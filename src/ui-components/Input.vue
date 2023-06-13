@@ -1,7 +1,14 @@
 <template>
 	<div class="form-floating mt-3">
-		<input :type="type" class="form-control" id="floatingPassword" :placeholder="placeholder">
-		<label for="floatingPassword">{{label}}</label>
+		<input
+				:type="type"
+				class="form-control"
+				:id="label"
+				:placeholder="placeholder"
+				@input="updateInput"
+				:value="modelValue"
+		>
+		<label :for="label">{{label}}</label>
 	</div>
 </template>
 
@@ -11,8 +18,14 @@ export default {
   props: {
 		type: String,
     label: String,
-		placeholder: String
-  }
+		placeholder: String,
+		modelValue: [Number, String]
+  },
+	methods: {
+		updateInput(e) {
+			this.$emit("update:modelValue", e.target.value);
+		}
+	}
 }
 </script>
 
