@@ -3,6 +3,8 @@
 		<img :src="logo" width="75" alt="Logo">
 		<h1 class="h3 mb-3 mt-3 fw-normal">Please Register</h1>
 
+		<ValidationErrors v-if="validationErrors" :validationErrors="validationErrors"/>
+
 		<Input :label="'Name'" :type="'text'" :placeholder="'Name'" v-model="username"/>
 
 		<Input :label="'Email address'" :type="'text'" :placeholder="'Email address'" v-model="email"/>
@@ -17,10 +19,12 @@
 import {logo} from '@/constants'
 import Button from "@/ui-components/Button.vue";
 import Input from "@/ui-components/Input.vue";
+import Validation from "./ValidationErrors.vue";
+import ValidationErrors from "@/components/ValidationErrors.vue";
 
 export default {
 	name: "Register",
-	components: {Button, Input},
+	components: {ValidationErrors, Button, Input, Validation},
 	data() {
 		return {
 			logo,
@@ -32,6 +36,9 @@ export default {
 	computed: {
 		isLoading() {
 			return this.$store.state.auth.isLoading;
+		},
+		validationErrors() {
+			return this.$store.state.auth.errors;
 		}
 	},
 	methods: {

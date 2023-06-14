@@ -4,20 +4,22 @@ import {setItem} from "@/helpers/persistenStorage";
 const state = {
 	isLoading: false,
 	user: null,
-	error: null,
+	errors: null,
 }
 
 const mutations = {
 	registerStart(state) {
 		state.isLoading = true;
 		state.user = null;
-		state.error = null;
+		state.errors = null;
 	},
-	registerSuccess(state) {
+	registerSuccess(state, payload) {
 		state.isLoading = false;
+		state.user = payload
 	},
-	registerFailure(state) {
+	registerFailure(state, payload) {
 		state.isLoading = false;
+		state.errors = payload.errors;
 	}
 }
 
