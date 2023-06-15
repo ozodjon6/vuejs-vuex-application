@@ -19,12 +19,12 @@
 import {logo} from '@/constants'
 import Button from "@/ui-components/Button.vue";
 import Input from "@/ui-components/Input.vue";
-import Validation from "./ValidationErrors.vue";
 import ValidationErrors from "@/components/ValidationErrors.vue";
+import {mapState} from "vuex";
 
 export default {
 	name: "Register",
-	components: {ValidationErrors, Button, Input, Validation},
+	components: {ValidationErrors, Button, Input},
 	data() {
 		return {
 			logo,
@@ -34,12 +34,10 @@ export default {
 		}
 	},
 	computed: {
-		isLoading() {
-			return this.$store.state.auth.isLoading;
-		},
-		validationErrors() {
-			return this.$store.state.auth.errors;
-		}
+		...mapState({
+			isLoading: state => state.auth.isLoading,
+			validationErrors: state => state.auth.errors
+		})
 	},
 	methods: {
 		submitHandler(e) {
@@ -51,7 +49,6 @@ export default {
 			}
 			this.$store.dispatch('register', data)
 				.then((user) => {
-					console.log('USER', user);
 					this.$router.push({name: 'home'})
 				})
 				.catch((error) => {

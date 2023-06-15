@@ -20,6 +20,19 @@ const mutations = {
 	registerFailure(state, payload) {
 		state.isLoading = false;
 		state.errors = payload.errors;
+	},
+	loginStart(state) {
+		state.isLoading = true;
+		state.user = null;
+		state.errors = null;
+	},
+	loginSuccess(state, payload) {
+		state.isLoading = false;
+		state.user = payload
+	},
+	loginFailure(state, payload) {
+		state.isLoading = false;
+		state.errors = payload.errors;
 	}
 }
 
@@ -38,6 +51,20 @@ const actions = {
 			})
 		})
 
+	},
+	login(context, user) {
+		return new Promise((resolve, reject) => {
+			context.commit('loginStart');
+			AuthService.login(user)
+				.then(response => {
+					context.commit('loginSuccess', response.data.user);
+					setItem('token', response.data.user.token);
+					resolve(response.data.user);
+				}).catch(err => {
+					context.commit('loginFailure', err.response.data);
+					reject(err.response.data)
+			})
+		})
 	}
 }
 export default {
