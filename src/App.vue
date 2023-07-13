@@ -16,7 +16,10 @@ export default {
 	  RegisterView,
     Navbar,
     LoginView,
-  }
+  },
+    mounted() {
+		this.$store.dispatch('getUser')
+	}
 }
 </script>
 
