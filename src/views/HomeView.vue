@@ -1,12 +1,20 @@
 <template>
-	<h1>Home page</h1>
-  {{data}}
+	<div>
+    <div class="row">
+      <ArticleCard v-for="article in data" :key="article.id" :article="article"/>
+    </div>
+  </div>
 </template>
 
 <script>
 import {mapState} from 'vuex';
+import ArticleCard from "@/components/ArticleCard.vue";
+
 export default {
 	name: "HomeView",
+  components: {
+    ArticleCard
+  },
 	computed: {
     ...mapState({
       data: state => state.articles.data,
