@@ -14,12 +14,12 @@
         <p class="card-text">
           {{article.description}}
         </p>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="card-footer d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
           </div>
-          <small class="text-muted">9 mins</small>
+          <small class="text-muted">{{dateCreatedFormat(article.createdAt)}}</small>
         </div>
       </div>
     </div>
@@ -33,6 +33,11 @@ export default {
     article: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    dateCreatedFormat(date) {
+      return new Date(date).toLocaleString('uzb')
     }
   }
 }

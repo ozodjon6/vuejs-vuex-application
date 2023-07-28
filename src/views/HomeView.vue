@@ -1,7 +1,8 @@
 <template>
 	<div>
     <div class="row">
-      <ArticleCard v-for="article in data" :key="article.id" :article="article"/>
+      <Loader v-if="isLoading"/>
+      <ArticleCard v-else v-for="article in data" :key="article.id" :article="article"/>
     </div>
   </div>
 </template>
@@ -9,10 +10,12 @@
 <script>
 import {mapState} from 'vuex';
 import ArticleCard from "@/components/ArticleCard.vue";
+import Loader from "@/ui-components/Loader.vue";
 
 export default {
 	name: "HomeView",
   components: {
+    Loader,
     ArticleCard
   },
 	computed: {

@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
     getArticlesStart(state) {
-        state.isLoading = false
+        state.isLoading = true
         state.data = null
         state.error = null
     },
