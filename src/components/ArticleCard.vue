@@ -17,22 +17,44 @@
         <div class="card-footer d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-secondary" @click="navigateHandler">Read more</button>
+            <template v-if="article?.author?.username === user">
+              <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                  @click="deleteArticleHandler"
+              >Delete</button>
+              <button
+                  type="button"
+                  class="btn btn-sm btn-outline-primary"
+              >Edit</button>
+            </template>
           </div>
+        </div>
           <small class="text-muted">{{dateCreatedFormat(article.createdAt)}}</small>
         </div>
       </div>
+    <Loader v-if="isLoading" :style="'position: fixed; top: 50%; left: 50%'"/>
     </div>
-  </div>
 
 </template>
 
 <script>
+import {mapState} from "vuex";
+import Loader from "@/ui-components/Loader.vue";
+
 export default {
+  components: {Loader},
   props: {
     article: {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    ...mapState({
+      user: state => state.auth.user.username,
+      isLoading: state => state.controllerArticle.isLoading
+    })
   },
   methods: {
     dateCreatedFormat(date) {
@@ -40,6 +62,11 @@ export default {
     },
     navigateHandler() {
       return this.$router.push(`/article/${this.article.slug}`)
+    },
+    deleteArticleHandler() {
+      this.isLoading = true;
+      return this.$store.dispatch('deleteArticle', this.article.slug)
+          .then(() => this.$store.dispatch('articles'))
     }
   }
 }

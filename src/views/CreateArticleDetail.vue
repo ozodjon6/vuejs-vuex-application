@@ -48,8 +48,13 @@ export default {
         body: this.body,
         tagList: []
       }
-
       this.$store.dispatch('createArticle', article)
+      setTimeout(() => {
+        this.$router.push('/')
+        this.title = ''
+        this.description = ''
+        this.body = ''
+      }, 1000)
     },
   }
 }
