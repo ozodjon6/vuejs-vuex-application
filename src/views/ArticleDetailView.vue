@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="isLoading"/>
+  <Loader v-if="isLoading" :style="'position: fixed; top: 50%; left: 50%'"/>
   <ArticleDetail v-else/>
 
 </template>

@@ -18,11 +18,11 @@
           <p class="f-bold">{{article?.author.username}}</p>
         </div>
       </div>
-      <div class="col-2 d-flex align-items-center my-4">
+      <div class="col-4 d-flex align-items-center my-4">
         <p class="opacity-75 d-block" style="margin-right: 12px">Created at:</p>
         <p class="font-monospace">{{new Date(article?.createdAt).toLocaleDateString('us')}}</p>
       </div>
-      <div class="col-2 d-flex align-items-center my-4">
+      <div class="col-4 d-flex align-items-center my-4">
         <p class="opacity-75 d-block" style="margin-right: 12px">Updated at:</p>
         <p class="font-monospace">{{new Date(article?.updatedAt).toLocaleDateString('us')}}</p>
       </div>

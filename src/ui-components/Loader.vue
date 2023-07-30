@@ -1,6 +1,6 @@
 <template>
 
-  <div class="spinner-border" style="position: fixed; top: 50%; left: 50%" role="status">
+  <div class="spinner-border" :style="style" role="status">
     <span class="sr-only">Loading...</span>
   </div>
 
@@ -9,7 +9,12 @@
 <script>
 
 export default {
-  name: 'Loader'
+  name: 'Loader',
+  props: {
+    style: {
+      style: String
+    }
+  }
 }
 
 </script>

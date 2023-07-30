@@ -5,6 +5,10 @@
 		</RouterLink>
 		<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
 			<template v-if="isLoggedIn">
+        <RouterLink class="me-3 py-2 link-body-emphasis text-decoration-none"
+                    :to="{name: 'create-article'}"
+        >Create Article
+        </RouterLink>
 				<RouterLink class="me-3 py-2 link-body-emphasis text-decoration-none"
 										:to="{name: 'login'}"
 				>{{currentUser.username}}

@@ -1,7 +1,7 @@
 <template>
 	<div>
     <div class="row">
-      <Loader v-if="isLoading"/>
+      <Loader v-if="isLoading" :style="'position: fixed; top: 50%; left: 50%'"/>
       <ArticleCard v-else v-for="article in data" :key="article.id" :article="article"/>
     </div>
   </div>
