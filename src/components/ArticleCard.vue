@@ -26,6 +26,7 @@
               <button
                   type="button"
                   class="btn btn-sm btn-outline-primary"
+                  @click="editArticleHandler"
               >Edit</button>
             </template>
           </div>
@@ -67,6 +68,9 @@ export default {
       this.isLoading = true;
       return this.$store.dispatch('deleteArticle', this.article.slug)
           .then(() => this.$store.dispatch('articles'))
+    },
+    editArticleHandler() {
+      return this.$router.push(`/edit-article/${this.article.slug}`);
     }
   }
 }
