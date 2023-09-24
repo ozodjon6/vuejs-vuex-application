@@ -11,7 +11,7 @@
         </RouterLink>
 				<RouterLink class="me-3 py-2 link-body-emphasis text-decoration-none"
 										:to="{name: 'login'}"
-				>{{currentUser.username}}
+				>{{currentUser?.username}}
 				</RouterLink>
 				<a href="#"
 					 class="me-3 py-2 link-body-emphasis text-decoration-none"

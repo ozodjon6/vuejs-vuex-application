@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.auth.user.username,
+      user: state => state.auth?.user?.username,
       isLoading: state => state.controllerArticle.isLoading
     })
   },

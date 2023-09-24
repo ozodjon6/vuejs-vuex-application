@@ -15,7 +15,7 @@
           >
             <span class="text-light text-uppercase fw-bold display-6">{{article?.author.username[0]}}</span>
           </div>
-          <p class="f-bold">{{article?.author.username}}</p>
+          <p class="f-bold">{{article?.author?.username}}</p>
         </div>
       </div>
       <div class="col-4 d-flex align-items-center my-4">
